@@ -3,8 +3,8 @@ package com.br.todolist.domain
 data class Todo(
     val id: Long,
     val title: String,
-    val description: String,
-    val isCompleted: Boolean
+    val description: String?,
+    val isDone: Boolean
 )
 
 // fake objects

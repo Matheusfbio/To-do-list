@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
-
-//    alias(libs.plugins.hilt.android)
+    kotlin("plugin.serialization") version libs.versions.kotlin
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -55,6 +55,7 @@ dependencies {
 
     // Room
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.compose.animation.core.android)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
@@ -68,7 +69,9 @@ dependencies {
     // Dagger Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-//    ksp("androidx.room:room-compiler:2.6.1")
+
+    // Kotlinx Serialization
+    implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -25,15 +25,23 @@ import com.br.todolist.ui.components.TodoItem
 import com.br.todolist.ui.theme.TodoListTheme
 
 @Composable
-fun ListScreen() {
-    ListContent(todos = emptyList())
+fun ListScreen(
+    navigateToAddEditScreen: (id:Long?) -> Unit,
+) {
+    ListContent(
+        todos = emptyList(),
+        onAddItemClick = navigateToAddEditScreen,
+        )
 }
 
 @Composable
-fun ListContent(todos: List<Todo>) {
+fun ListContent(
+        todos: List<Todo>,
+        onAddItemClick: (id: Long?) -> Unit,
+) {
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = {}) {
+            FloatingActionButton(onClick = {onAddItemClick(null)} ) {
                 Icon(Icons.Default.Add, "Add")
             }
         }
@@ -62,11 +70,13 @@ fun ListContent(todos: List<Todo>) {
 @Composable
 private fun ListContentPreview() {
     TodoListTheme {
-        ListContent(todos = listOf(
-            todo1,
-            todo2,
-            todo3,
-
-        ))
+        ListContent(
+            todos = listOf(
+                todo1,
+                todo2,
+                todo3,
+            ),
+            onAddItemClick = {}
+        )
     }
 }
