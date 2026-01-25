@@ -44,8 +44,7 @@ fun TodoItem(
     ) {
         Row(modifier = Modifier.padding(2.dp,),
             verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(checked = todo.isCompleted, onCheckedChange = onCompletedChange,)
-
+            Checkbox(checked = todo.isDone, onCheckedChange = onCompletedChange,)
             Spacer(modifier = Modifier.width(8.dp))
 
             Column(modifier = Modifier.weight(1f),) {
