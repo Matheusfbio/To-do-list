@@ -40,10 +40,5 @@ O projeto está configurado para seguir uma arquitetura moderna e escalável, ut
 
 Com a base funcional estabelecida, o foco agora se volta para a expansão e refinamento das funcionalidades:
 
-1.  **CRUD Completo:** Implementar as funcionalidades de Adicionar, Editar e Excluir tarefas.
-2.  **Melhoria da UI/UX:**
-    - Criar uma tela de detalhes/edição para as tarefas.
-    - Adicionar um Floating Action Button (FAB) para criar novas tarefas.
-    - Implementar animações e feedback visual para o usuário.
-3.  **Testes:** Adicionar testes unitários para ViewModels e Repositórios, e testes de UI para os Composables.
-4.  **Gerenciamento de Estado Avançado:** Refinar o gerenciamento de eventos da UI (`UiEvent`) e o estado da tela.
+1.  **Testes:** Adicionar testes unitários para ViewModels e Repositórios, e testes de UI para os Composables.
+2.  **Gerenciamento de Estado Avançado:** Refinar o gerenciamento de eventos da UI (`UiEvent`) e o estado da tela.
