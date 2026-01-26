@@ -23,13 +23,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.br.todolist.data.TodoRepository
 import com.br.todolist.data.TodoRepositoryImpl
 import com.br.todolist.ui.UiEvent
-import com.example.todolist.data.TodoDatabaseProvider
+import com.br.todolist.data.TodoDatabaseProvider
 
 @Composable
 fun  AddEditScreen(
+    id: Long?,
     navigateBack: () -> Unit
 ) {
     val context = LocalContext.current.applicationContext
@@ -39,7 +39,8 @@ fun  AddEditScreen(
     )
     val viewModel = viewModel<AddEditViewModel> {
         AddEditViewModel(
-        repository = repository
+            id = id,
+            repository = repository
     ) }
 
     val title = viewModel.title
@@ -116,7 +117,8 @@ fun AddEditContent(
                 .fillMaxWidth(),
                 value = description ?: "",
                 onValueChange = {
-                    onEvent(AddEditEvent.DescriptionChanged(it))
+                    onEvent(
+                        AddEditEvent.DescriptionChanged(it))
                 },
                 placeholder = {
                     Text("Description (optional)")

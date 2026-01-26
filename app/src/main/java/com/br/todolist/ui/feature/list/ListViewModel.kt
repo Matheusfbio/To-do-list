@@ -1,10 +1,11 @@
-package com.br.todolist.ui.feature.list
+package com.example.todolist.ui.feature.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.br.todolist.data.TodoRepository
 import com.br.todolist.navigation.AddEditRouter
 import com.br.todolist.ui.UiEvent
+import com.br.todolist.ui.feature.list.ListEvent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -13,12 +14,12 @@ import kotlinx.coroutines.launch
 
 class ListViewModel(
     private val repository: TodoRepository,
-): ViewModel() {
+) : ViewModel() {
 
     val todos = repository.getAll()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
+            started = SharingStarted.WhileSubscribed(5000),
             initialValue = emptyList()
         )
 
@@ -26,12 +27,12 @@ class ListViewModel(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     fun onEvent(event: ListEvent) {
-        when(event) {
+        when (event) {
             is ListEvent.Delete -> {
                 delete(event.id)
             }
             is ListEvent.CompleteChanged -> {
-                completeChanged(event.id, event.isCompleted)
+                completeChanged(event.id, event.isDone)
             }
             is ListEvent.AddEdit -> {
                 viewModelScope.launch {
@@ -47,9 +48,9 @@ class ListViewModel(
         }
     }
 
-    private fun completeChanged(id: Long, isCompleted: Boolean) {
+    private fun completeChanged(id: Long, isDone: Boolean) {
         viewModelScope.launch {
-            repository.updateCompleted(id, isCompleted)
+            repository.updateCompleted(id, isDone)
         }
     }
 }

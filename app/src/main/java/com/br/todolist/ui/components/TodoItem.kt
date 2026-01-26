@@ -23,37 +23,49 @@ import androidx.compose.ui.unit.dp
 import com.br.todolist.domain.Todo
 import com.br.todolist.domain.todo1
 import com.br.todolist.domain.todo2
+import com.br.todolist.ui.theme.TodoListTheme
+
 
 @Composable
 fun TodoItem(
     todo: Todo,
-    onCompletedChange: (Boolean) -> Unit = {},
-    onItemClicked: () -> Unit = {},
-    onDeleteClick: () -> Unit = {},
+    onCompletedChange: (Boolean) -> Unit,
+    onItemClick: () -> Unit,
+    onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Surface(
-        onClick = onItemClicked,
-        modifier  = modifier,
-        shadowElevation = 2.dp,
+        onClick = onItemClick,
+        modifier = modifier,
         shape = MaterialTheme.shapes.medium,
+        shadowElevation = 2.dp,
         border = BorderStroke(
             width = 1.dp,
             color = MaterialTheme.colorScheme.outline
         )
     ) {
-        Row(modifier = Modifier.padding(2.dp,),
-            verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(checked = todo.isDone, onCheckedChange = onCompletedChange,)
+        Row(
+            modifier = Modifier
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = todo.isDone,
+                onCheckedChange = onCompletedChange,
+            )
+
             Spacer(modifier = Modifier.width(8.dp))
 
-            Column(modifier = Modifier.weight(1f),) {
+            Column(
+                modifier = Modifier
+                    .weight(1f),
+            ) {
                 Text(
                     text = todo.title,
                     style = MaterialTheme.typography.titleLarge
                 )
-                todo.description?.let {
 
+                todo.description?.let {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
@@ -65,12 +77,14 @@ fun TodoItem(
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            IconButton(onClick = onDeleteClick) {
+            IconButton(
+                onClick = onDeleteClick
+            ) {
                 Icon(
-                    imageVector = Icons.Default.Delete, contentDescription = "Delete"
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete"
                 )
             }
-
         }
     }
 }
@@ -78,21 +92,25 @@ fun TodoItem(
 @Preview
 @Composable
 private fun TodoItemPreview() {
-    TodoItem(
-        todo = todo1,
-        onCompletedChange = {},
-        onItemClicked = {},
-        onDeleteClick = {}
-    )
+    TodoListTheme {
+        TodoItem(
+            todo = todo1,
+            onCompletedChange = {},
+            onItemClick = {},
+            onDeleteClick = {},
+        )
+    }
 }
 
 @Preview
 @Composable
 private fun TodoItemCompletedPreview() {
-    TodoItem(
-        todo = todo2,
-        onCompletedChange = {},
-        onItemClicked = {},
-        onDeleteClick = {}
-    )
+    TodoListTheme {
+        TodoItem(
+            todo = todo2,
+            onCompletedChange = {},
+            onItemClick = {},
+            onDeleteClick = {},
+        )
+    }
 }

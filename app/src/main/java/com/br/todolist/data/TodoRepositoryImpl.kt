@@ -3,12 +3,18 @@ package com.br.todolist.data
 import com.br.todolist.domain.Todo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlin.text.insert
 
 class TodoRepositoryImpl(
     private val dao: TodoDao
 ) : TodoRepository {
-    override suspend fun insert(title: String, description: String?) {
-        val entity = TodoEntity(
+    override suspend fun insert(title: String, description: String?, id: Long?) {
+        val entity = id?.let {
+            dao.getById(it)?.copy(
+                title = title,
+                description = description,
+            )
+        } ?: TodoEntity(
             title = title,
             description = description,
             isDone = false,
@@ -18,11 +24,9 @@ class TodoRepositoryImpl(
     }
 
 
-    override suspend fun updateCompleted(id: Long, completed: Boolean) {
+    override suspend fun updateCompleted(id: Long, isCompleted: Boolean) {
         val existingEntity = dao.getById(id) ?: return
-        val updatedEntity = existingEntity.copy(
-            isDone = completed
-        )
+        val updatedEntity = existingEntity.copy(isDone = isCompleted)
         dao.insert(updatedEntity)
     }
 
@@ -54,4 +58,5 @@ class TodoRepositoryImpl(
             )
         }
     }
+
 }

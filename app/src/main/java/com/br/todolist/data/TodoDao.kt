@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -19,5 +20,12 @@ interface TodoDao {
     fun getAll(): Flow<List<TodoEntity>>
 
     @Query("SELECT * FROM todos WHERE id = :id")
-    fun getById(id: Long): TodoEntity?
+    suspend fun getById(id: Long): TodoEntity?
+
+    @Update
+    suspend fun update(todo: TodoEntity)
+
+//    // Adicionando a função de atualização de status, se ainda não estiver definida
+//    @Query("UPDATE todos SET isCompleted = :isCompleted WHERE id = :id")
+//    suspend fun updateCompleted(id: Long, isCompleted: Boolean)
 }

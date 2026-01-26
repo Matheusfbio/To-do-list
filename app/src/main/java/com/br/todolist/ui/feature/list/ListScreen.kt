@@ -1,4 +1,4 @@
-package com.example.todolist.ui.feature.list
+package com.br.todolist.ui.feature.list
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -28,11 +28,9 @@ import com.br.todolist.domain.todo3
 import com.br.todolist.navigation.AddEditRouter
 import com.br.todolist.ui.UiEvent
 import com.br.todolist.ui.components.TodoItem
-import com.br.todolist.ui.feature.list.ListEvent
-import com.br.todolist.ui.feature.list.ListViewModel
 import com.br.todolist.ui.theme.TodoListTheme
-import com.example.todolist.data.TodoDatabaseProvider
-import kotlin.collections.lastIndex
+import com.br.todolist.data.TodoDatabaseProvider
+import com.example.todolist.ui.feature.list.ListViewModel
 
 @Composable
 fun ListScreen(
@@ -59,8 +57,12 @@ fun ListScreen(
                         }
                     }
                 }
-                UiEvent.NavigateBack -> TODO()
-                is UiEvent.ShowSnackBar -> TODO()
+
+                UiEvent.NavigateBack -> {
+                }
+
+                is UiEvent.ShowSnackBar -> {
+                }
             }
         }
     }
@@ -96,7 +98,7 @@ fun ListContent(
                     onCompletedChange = {
                         onEvent(ListEvent.CompleteChanged(todo.id, it))
                     },
-                    onItemClicked = {
+                    onItemClick = {
                         onEvent(ListEvent.AddEdit(todo.id))
                     },
                     onDeleteClick = {

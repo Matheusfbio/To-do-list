@@ -1,11 +1,9 @@
-package com.example.todolist.data
+package com.br.todolist.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.br.todolist.data.TodoDao
-import com.br.todolist.data.TodoEntity
 
 @Database(
     entities = [TodoEntity::class],
