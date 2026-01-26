@@ -1,4 +1,4 @@
-# TodoList Android App
+# To do List Android App
 
 Este é um projeto de aplicativo de lista de tarefas (TodoList) para Android, desenvolvido com as práticas e tecnologias mais recentes do ecossistema Android.
 
