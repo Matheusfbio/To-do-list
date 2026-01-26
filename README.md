@@ -2,6 +2,10 @@
 
 Este é um projeto de aplicativo de lista de tarefas (TodoList) para Android, desenvolvido com as práticas e tecnologias mais recentes do ecossistema Android.
 
+
+https://github.com/user-attachments/assets/fe01094b-640f-4c26-b3e3-b40e0e8dfbeb
+
+
 ## Status do Projeto
 
 **Funcionalidades Iniciais Implementadas**
